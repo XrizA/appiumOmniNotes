@@ -1,6 +1,7 @@
-package ntut.csie.team3.tests.note.edit;
+package ntut.csie.team3.tests.note.edit.textnote;
 
 import io.appium.java_client.MobileElement;
+
 import ntut.csie.team3.AbstractTest;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Order;
@@ -8,7 +9,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class EditTextNoteContent extends AbstractTest {
+public class EditTextNoteTitle extends AbstractTest {
 
     @BeforeEach
     public void init() throws InterruptedException {
@@ -16,45 +17,41 @@ public class EditTextNoteContent extends AbstractTest {
         createTextNote();
     }
 
-    // TC10-1
+    // TC09-1
     @Test
     @Order(1)
-    public void editTextNoteContentWithNoInputContent() throws InterruptedException {
+    public void editTextNoteTitleWithNoInputTitle() throws InterruptedException {
         MobileElement cardLayout = driver.findElementById(CARD_LAYOUT_ID);
         mobileElementClick(cardLayout);
 
-        MobileElement editDetailContent = driver.findElementById(EDIT_DETAIL_CONTENT_ID);
-        mobileElementClear(editDetailContent);
+        MobileElement editDetailTitle = driver.findElementById(EDIT_DETAIL_TITLE_ID);
+        mobileElementClear(editDetailTitle);
 
         MobileElement buttonDrawerOpen = driver.findElementByAccessibilityId(BUTTON_DRAWER_OPEN_ID);
         mobileElementClick(buttonDrawerOpen);
 
-        // 沒有輸入內容的話，沒有Content的欄位
         MobileElement textViewNoteTitle = driver.findElementById(TEXT_VIEW_NOTE_TITLE_ID);
-        assertEquals(NOTE_TITLE, textViewNoteTitle.getText());
+        assertEquals(EMPTY_STRING, textViewNoteTitle.getText());
 
         delay(2000);
     }
 
-    // TC10-2
+    // TC09-2
     @Test
     @Order(2)
-    public void editTextNoteContent() throws InterruptedException {
+    public void editTextNoteTitle() throws InterruptedException {
         MobileElement cardLayout = driver.findElementById(CARD_LAYOUT_ID);
         mobileElementClick(cardLayout);
 
-        MobileElement editDetailContent = driver.findElementById(EDIT_DETAIL_CONTENT_ID);
-        mobileElementSendKeys(editDetailContent, NOTE_CONTENT);
-        assertEquals(NOTE_CONTENT, editDetailContent.getText());
+        MobileElement editDetailTitle = driver.findElementById(EDIT_DETAIL_TITLE_ID);
+        mobileElementSendKeys(editDetailTitle, NOTE_TITLE);
+        assertEquals(NOTE_TITLE, editDetailTitle.getText());
 
         MobileElement buttonDrawerOpen = driver.findElementByAccessibilityId(BUTTON_DRAWER_OPEN_ID);
         mobileElementClick(buttonDrawerOpen);
 
         MobileElement textViewNoteTitle = driver.findElementById(TEXT_VIEW_NOTE_TITLE_ID);
         assertEquals(NOTE_TITLE, textViewNoteTitle.getText());
-
-        MobileElement textViewNoteContent = driver.findElementById(TEXT_VIEW_NOTE_CONTENT_ID);
-        assertEquals(NOTE_CONTENT, textViewNoteContent.getText());
 
         delay(2000);
     }

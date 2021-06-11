@@ -1,4 +1,4 @@
-package ntut.csie.team3.tests.note.delete;
+package ntut.csie.team3.tests.note.trash.delete;
 
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidElement;

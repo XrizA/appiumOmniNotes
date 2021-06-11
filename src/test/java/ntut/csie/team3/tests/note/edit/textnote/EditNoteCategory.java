@@ -1,4 +1,4 @@
-package ntut.csie.team3.tests.category.delete;
+package ntut.csie.team3.tests.note.edit.textnote;
 
 import io.appium.java_client.MobileElement;
 import ntut.csie.team3.AbstractTest;
@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class DeleteNoteCategory extends AbstractTest {
+public class EditNoteCategory extends AbstractTest {
 
     @BeforeEach
     public void init() throws InterruptedException {
@@ -16,18 +16,18 @@ public class DeleteNoteCategory extends AbstractTest {
         createCategory();
     }
 
-    // TC20
+    // TC19
     @Test
     @Order(1)
-    public void deleteNoteCategory() throws InterruptedException {
+    public void editNoteCategory() throws InterruptedException {
         MobileElement cardLayout = driver.findElementById(CARD_LAYOUT_ID);
         longPress(cardLayout);
 
         MobileElement menuCategory = driver.findElementById(MENU_CATEGORY_ID);
         mobileElementClick(menuCategory);
 
-        MobileElement deleteCategory = driver.findElementById("it.feio.android.omninotes:id/buttonDefaultNegative");
-        mobileElementClick(deleteCategory);
+        MobileElement categoryList = driver.findElementByXPath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.LinearLayout[2]/android.widget.FrameLayout/android.widget.ListView/android.widget.LinearLayout/android.widget.LinearLayout/android.widget.TextView[1]");
+        mobileElementClick(categoryList);
 
         cardLayout = driver.findElementById(CARD_LAYOUT_ID);
         longPress(cardLayout);
@@ -36,7 +36,7 @@ public class DeleteNoteCategory extends AbstractTest {
         mobileElementClick(menuCategory);
 
         MobileElement categoryCount = driver.findElementById("it.feio.android.omninotes:id/count");
-        assertEquals("0", categoryCount.getText());
+        assertEquals("1", categoryCount.getText());
 
         delay(2000);
     }

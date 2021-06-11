@@ -1,4 +1,4 @@
-package ntut.csie.team3.tests.note.create;
+package ntut.csie.team3.tests.note.create.textnote;
 
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidElement;
