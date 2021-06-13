@@ -1,4 +1,4 @@
-package ntut.csie.team3.tests.tag.create;
+package ntut.csie.team3.tests.tag.edit;
 
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidElement;
@@ -12,25 +12,27 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-public class CreateTag extends AbstractTest {
+public class EditTagTest extends AbstractTest {
 
     @BeforeEach
     public void init() throws InterruptedException {
         super.init();
         createTextNote();
+        createTag();
     }
 
-    // TC21-1
+    // TC24-1
     @Test
     @Order(1)
-    public void createTagWithInputLongLessOne() throws InterruptedException {
+    public void editTagInNewTextNoteWithInputLongLessOne() throws InterruptedException {
 
         MobileElement cardLayout = driver.findElementById(CARD_LAYOUT_ID);
         mobileElementClick(cardLayout);
 
-        MobileElement editDetailContent = (MobileElement) driver.findElementById(EDIT_DETAIL_CONTENT_ID);
+        MobileElement editDetailContent = driver.findElementById(EDIT_DETAIL_CONTENT_ID);
         String editDetailContentText = editDetailContent.getText();
-        editDetailContent.sendKeys(editDetailContentText + "#好");
+        editDetailContentText =  editDetailContentText.substring(0, editDetailContentText.indexOf("#"));
+        mobileElementSendKeys(editDetailContent, editDetailContentText + "#好");
 
         MobileElement buttonDrawerOpen = driver.findElementByAccessibilityId(BUTTON_DRAWER_OPEN_ID);
         mobileElementClick(buttonDrawerOpen);
@@ -50,17 +52,18 @@ public class CreateTag extends AbstractTest {
         delay(2000);
     }
 
-
-    // TC21-2
+    // TC24-2
     @Test
     @Order(2)
-    public void createTagWithInputLongMoreThanTwo() throws InterruptedException {
+    public void editTagInNewTextNoteWithInputLongMoreThanTwo() throws InterruptedException {
+
         MobileElement cardLayout = driver.findElementById(CARD_LAYOUT_ID);
         mobileElementClick(cardLayout);
 
-        MobileElement editDetailContent = (MobileElement) driver.findElementById(EDIT_DETAIL_CONTENT_ID);
+        MobileElement editDetailContent = driver.findElementById(EDIT_DETAIL_CONTENT_ID);
         String editDetailContentText = editDetailContent.getText();
-        mobileElementSendKeys(editDetailContent, editDetailContentText + "#已完成");
+        editDetailContentText =  editDetailContentText.substring(0, editDetailContentText.indexOf("#"));
+        editDetailContent.sendKeys(editDetailContentText + "#未完成");
 
         MobileElement buttonDrawerOpen = driver.findElementByAccessibilityId(BUTTON_DRAWER_OPEN_ID);
         mobileElementClick(buttonDrawerOpen);
@@ -72,14 +75,10 @@ public class CreateTag extends AbstractTest {
         mobileElementClick(createTag);
 
         List<AndroidElement> tagList = driver.findElementsByClassName("android.widget.TextView");
-        assertEquals("已完成 (1)", tagList.get(1).getText());
-
-        MobileElement complete = driver.findElementById("it.feio.android.omninotes:id/buttonDefaultPositive");
-        mobileElementClick(complete);
-
-        buttonDrawerOpen = driver.findElementByAccessibilityId(BUTTON_DRAWER_OPEN_ID);
-        mobileElementClick(buttonDrawerOpen);
+        assertEquals("未完成 (1)", tagList.get(1).getText());
 
         delay(2000);
     }
+
+
 }

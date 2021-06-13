@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class EditNoteCategory extends AbstractTest {
+public class EditNoteCategoryTest extends AbstractTest {
 
     @BeforeEach
     public void init() throws InterruptedException {
@@ -24,15 +24,6 @@ public class EditNoteCategory extends AbstractTest {
         longPress(cardLayout);
 
         MobileElement menuCategory = driver.findElementById(MENU_CATEGORY_ID);
-        mobileElementClick(menuCategory);
-
-        MobileElement categoryList = driver.findElementByXPath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.LinearLayout[2]/android.widget.FrameLayout/android.widget.ListView/android.widget.LinearLayout/android.widget.LinearLayout/android.widget.TextView[1]");
-        mobileElementClick(categoryList);
-
-        cardLayout = driver.findElementById(CARD_LAYOUT_ID);
-        longPress(cardLayout);
-
-        menuCategory = driver.findElementById(MENU_CATEGORY_ID);
         mobileElementClick(menuCategory);
 
         MobileElement categoryCount = driver.findElementById("it.feio.android.omninotes:id/count");

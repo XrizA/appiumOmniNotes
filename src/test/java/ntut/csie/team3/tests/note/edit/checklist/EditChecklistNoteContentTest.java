@@ -11,7 +11,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class EditChecklistNoteContent extends AbstractTest {
+public class EditChecklistNoteContentTest extends AbstractTest {
     @BeforeEach
     public void init() throws InterruptedException {
         super.init();

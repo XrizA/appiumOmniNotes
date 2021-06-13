@@ -25,10 +25,10 @@ import static org.openqa.selenium.support.ui.ExpectedConditions.elementToBeClick
 public abstract class AbstractTest {
 
     public final static String DEVICE_NAME = "192.168.118.106:5555";
+//    public final static String DEVICE_NAME = "0B031FDD4003B5";
     public final static String APP_NAME = "app.apk";
     public static AndroidDriver<AndroidElement> driver;
     public final static String REMOTE_URL = "http://localhost:4723/wd/hub";
-
     public final static String MENU_ATTACHMENT_ID= "it.feio.android.omninotes:id/menu_attachment";
     public final static String MENU_CATEGORY_ID = "it.feio.android.omninotes:id/menu_category";
     public final static String TIMESTAMPS_ID = "it.feio.android.omninotes:id/timestamp";
@@ -48,6 +48,7 @@ public abstract class AbstractTest {
     public final static String EMPTY_STRING = "";
     public final static String BUTTON_DRAWER_OPEN_ID = "開啟側邊欄";
     public final static String BUTTON_NEW_TAG_ID = "新增標籤";
+    public final static String BUTTON_OPTIONS_ID = "更多選項";
 
     private final static String CURRENT_PATH = System.getProperty("user.dir");
 

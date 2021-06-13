@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class SearchNote extends AbstractTest {
+public class SearchNoteTest extends AbstractTest {
 
     private static boolean firstTime = true;
 

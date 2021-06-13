@@ -1,4 +1,4 @@
-package ntut.csie.team3.tests.note.trash.restore;
+package ntut.csie.team3.tests.note.restore_archive;
 
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidElement;
@@ -12,18 +12,18 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-public class RestoreTextNote extends AbstractTest {
+public class RestoreArchiveNoteTest extends AbstractTest {
     @BeforeEach
     public void init() throws InterruptedException {
         super.init();
         createTextNote();
-        moveNotesToTrash();
+        archiveNote();
     }
 
-    // TC07-1
+    // TC04-1
     @Test
     @Order(1)
-    public void restoreTextNote() throws InterruptedException {
+    public void restoreArchiveNote() throws InterruptedException {
         MobileElement note = driver.findElementById("it.feio.android.omninotes:id/root");
         mobileElementClick(note);
 
@@ -39,8 +39,8 @@ public class RestoreTextNote extends AbstractTest {
         MobileElement buttonDrawerOpen = driver.findElementByAccessibilityId(BUTTON_DRAWER_OPEN_ID);
         mobileElementClick(buttonDrawerOpen);
 
-        MobileElement goToNotePage = driver.findElementByXPath("//*[@resource-id='it.feio.android.omninotes:id/drawer_nav_list']//android.widget.LinearLayout[1]");
-        mobileElementClick(goToNotePage);
+        MobileElement restoreArchiveNote = driver.findElementByXPath("//*[@resource-id='it.feio.android.omninotes:id/drawer_nav_list']//android.widget.LinearLayout[1]");
+        mobileElementClick(restoreArchiveNote);
 
         MobileElement noteTitle = driver.findElementById("it.feio.android.omninotes:id/note_title");
         assertEquals(NOTE_TITLE, noteTitle.getText());

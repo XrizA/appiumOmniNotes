@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class EditTextNoteTitle extends AbstractTest {
+public class EditTextNoteTitleTest extends AbstractTest {
 
     @BeforeEach
     public void init() throws InterruptedException {

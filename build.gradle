@@ -19,9 +19,14 @@ tasks.withType(JavaCompile) {
 dependencies {
     implementation 'com.github.appium:java-client:7.5.1'
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.6.0'
+    testImplementation 'org.junit.platform:junit-platform-runner:1.7.2'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
 }
 
 test {
     useJUnitPlatform()
+}
+
+task testSuite(type: Test) {
+    include '**/JUnit5TestSuite.class'
 }

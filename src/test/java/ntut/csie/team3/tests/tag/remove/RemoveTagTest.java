@@ -11,7 +11,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class RemoveTag extends AbstractTest {
+public class RemoveTagTest extends AbstractTest {
 
     @BeforeEach
     public void init() throws InterruptedException {

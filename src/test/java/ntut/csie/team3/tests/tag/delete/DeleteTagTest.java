@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-public class DeleteTag extends AbstractTest {
+public class DeleteTagTest extends AbstractTest {
 
     @BeforeEach
     public void init() throws InterruptedException {

@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class CreateCategory extends AbstractTest {
+public class CreateCategoryTest extends AbstractTest {
 
     @BeforeEach
     public void init() throws InterruptedException {

@@ -1,4 +1,4 @@
-package ntut.csie.team3.tests.note.restore_archive;
+package ntut.csie.team3.tests.note.trash.move;
 
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidElement;
@@ -12,18 +12,17 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-public class RestoreArchiveNote extends AbstractTest {
+public class MoveNotesToTrashTest extends AbstractTest {
     @BeforeEach
     public void init() throws InterruptedException {
         super.init();
         createTextNote();
-        archiveNote();
     }
 
-    // TC04-1
+    // TC05-1
     @Test
     @Order(1)
-    public void restoreArchiveNote() throws InterruptedException {
+    public void moveNotesToTrashTest() throws InterruptedException {
         MobileElement note = driver.findElementById("it.feio.android.omninotes:id/root");
         mobileElementClick(note);
 
@@ -31,7 +30,7 @@ public class RestoreArchiveNote extends AbstractTest {
         mobileElementClick(moreOptions);
 
         List<AndroidElement> editTextList = driver.findElementsByClassName("android.widget.TextView");
-        mobileElementClick(editTextList.get(2));
+        mobileElementClick(editTextList.get(3));
 
         MobileElement alertMessage = driver.findElementById("it.feio.android.omninotes:id/crouton_handle");
         assertNotNull(alertMessage);
@@ -39,8 +38,8 @@ public class RestoreArchiveNote extends AbstractTest {
         MobileElement buttonDrawerOpen = driver.findElementByAccessibilityId(BUTTON_DRAWER_OPEN_ID);
         mobileElementClick(buttonDrawerOpen);
 
-        MobileElement restoreArchiveNote = driver.findElementByXPath("//*[@resource-id='it.feio.android.omninotes:id/drawer_nav_list']//android.widget.LinearLayout[1]");
-        mobileElementClick(restoreArchiveNote);
+        MobileElement moveNotesToTrash = driver.findElementByXPath("//*[@resource-id='it.feio.android.omninotes:id/drawer_nav_list']//android.widget.LinearLayout[2]");
+        mobileElementClick(moveNotesToTrash);
 
         MobileElement noteTitle = driver.findElementById("it.feio.android.omninotes:id/note_title");
         assertEquals(NOTE_TITLE, noteTitle.getText());

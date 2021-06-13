@@ -12,7 +12,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class CreateChecklistNote extends AbstractTest {
+public class CreateChecklistNoteTest extends AbstractTest {
     // TC02-1
     @Test
     @Order(1)

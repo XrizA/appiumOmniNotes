@@ -11,7 +11,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class SortNote extends AbstractTest {
+public class SortNoteTest extends AbstractTest {
 
     private static boolean firstTime = true;
 

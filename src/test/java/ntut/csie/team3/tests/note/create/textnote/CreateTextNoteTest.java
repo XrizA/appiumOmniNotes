@@ -11,9 +11,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-public class CreateTextNote extends AbstractTest {
+public class CreateTextNoteTest extends AbstractTest {
     static List<Note> textNotes = new ArrayList<>();
 
     // TC01-1

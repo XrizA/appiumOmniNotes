@@ -8,12 +8,17 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class EditCategory extends AbstractTest {
+public class EditCategoryTest extends AbstractTest {
+
+    private static boolean firstTime = true;
 
     @BeforeEach
     public void init() throws InterruptedException {
         super.init();
-        createCategory();
+        if(firstTime) {
+            firstTime = false;
+            createCategory();
+        }
     }
 
     // TC17-1
@@ -97,8 +102,8 @@ public class EditCategory extends AbstractTest {
     @Test
     @Order(4)
     public void editCategoryWithCustomColor() throws InterruptedException {
-        MobileElement ButtonDrawerOpenId = driver.findElementByAccessibilityId(BUTTON_DRAWER_OPEN_ID);
-        mobileElementClick(ButtonDrawerOpenId);
+//        MobileElement ButtonDrawerOpenId = driver.findElementByAccessibilityId(BUTTON_DRAWER_OPEN_ID);
+//        mobileElementClick(ButtonDrawerOpenId);
 
         MobileElement drawerCategory = driver.findElementByXPath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.support.v4.widget.DrawerLayout/android.widget.ScrollView/android.widget.LinearLayout/android.widget.ListView[2]/android.widget.LinearLayout[1]/android.widget.LinearLayout/android.widget.TextView[1]");
         longPress(drawerCategory);

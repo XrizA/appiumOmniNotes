@@ -1,4 +1,4 @@
-package ntut.csie.team3.tests.note.trash.move;
+package ntut.csie.team3.tests.note.archive;
 
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidElement;
@@ -12,17 +12,18 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-public class MoveNotesToTrash extends AbstractTest {
+public class ArchiveNoteTest extends AbstractTest {
+
     @BeforeEach
     public void init() throws InterruptedException {
         super.init();
         createTextNote();
     }
 
-    // TC05-1
+    // TC03-1
     @Test
     @Order(1)
-    public void moveNotesToTrashTest() throws InterruptedException {
+    public void archiveNoteTest() throws InterruptedException {
         MobileElement note = driver.findElementById("it.feio.android.omninotes:id/root");
         mobileElementClick(note);
 
@@ -30,7 +31,7 @@ public class MoveNotesToTrash extends AbstractTest {
         mobileElementClick(moreOptions);
 
         List<AndroidElement> editTextList = driver.findElementsByClassName("android.widget.TextView");
-        mobileElementClick(editTextList.get(3));
+        mobileElementClick(editTextList.get(2));
 
         MobileElement alertMessage = driver.findElementById("it.feio.android.omninotes:id/crouton_handle");
         assertNotNull(alertMessage);
@@ -38,8 +39,8 @@ public class MoveNotesToTrash extends AbstractTest {
         MobileElement buttonDrawerOpen = driver.findElementByAccessibilityId(BUTTON_DRAWER_OPEN_ID);
         mobileElementClick(buttonDrawerOpen);
 
-        MobileElement moveNotesToTrash = driver.findElementByXPath("//*[@resource-id='it.feio.android.omninotes:id/drawer_nav_list']//android.widget.LinearLayout[2]");
-        mobileElementClick(moveNotesToTrash);
+        MobileElement archiveNote = driver.findElementByXPath("//*[@resource-id='it.feio.android.omninotes:id/drawer_nav_list']//android.widget.LinearLayout[2]");
+        mobileElementClick(archiveNote);
 
         MobileElement noteTitle = driver.findElementById("it.feio.android.omninotes:id/note_title");
         assertEquals(NOTE_TITLE, noteTitle.getText());
@@ -47,6 +48,6 @@ public class MoveNotesToTrash extends AbstractTest {
         MobileElement noteContent = driver.findElementById("it.feio.android.omninotes:id/note_content");
         assertEquals(NOTE_CONTENT, noteContent.getText());
 
-        delay(2000);
+        Thread.sleep(2000);
     }
 }

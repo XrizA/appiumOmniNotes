@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class DeleteNoteCategory extends AbstractTest {
+public class DeleteNoteCategoryTest extends AbstractTest {
 
     @BeforeEach
     public void init() throws InterruptedException {

@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-public class CreateTimestamps extends AbstractTest {
+public class CreateTimestampsTest extends AbstractTest {
 
     // TC26
     @Test
