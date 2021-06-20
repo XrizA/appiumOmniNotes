@@ -1,20 +1,13 @@
 package ntut.csie.team3.tests.note.create.textnote;
 
 import io.appium.java_client.MobileElement;
-import io.appium.java_client.android.AndroidElement;
 import ntut.csie.team3.AbstractTest;
-import ntut.csie.team3.Note;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class CreateTextNoteTest extends AbstractTest {
-    static List<Note> textNotes = new ArrayList<>();
-
     // TC01-1
     @Test
     @Order(1)
@@ -32,15 +25,17 @@ public class CreateTextNoteTest extends AbstractTest {
         MobileElement editDetailContent = driver.findElementById(EDIT_DETAIL_CONTENT_ID);
         mobileElementSendKeys(editDetailContent, NOTE_CONTENT);
         assertEquals(NOTE_CONTENT, editDetailContent.getText());
-        textNotes.add(new Note(NOTE_TITLE, NOTE_CONTENT));
 
         MobileElement buttonDrawerOpen = driver.findElementByAccessibilityId(BUTTON_DRAWER_OPEN_ID);
         mobileElementClick(buttonDrawerOpen);
 
-        assertEquals(NOTE_TITLE, textNotes.get(0).getTitle());
-        assertEquals(NOTE_CONTENT, textNotes.get(0).getContent());
+        MobileElement textViewNoteTitle = driver.findElementById(TEXT_VIEW_NOTE_TITLE_ID);
+        assertEquals(NOTE_TITLE, textViewNoteTitle.getText());
 
-        delay(1000);
+        MobileElement textViewNoteContent = driver.findElementById(TEXT_VIEW_NOTE_CONTENT_ID);
+        assertEquals(NOTE_CONTENT, textViewNoteContent.getText());
+
+        moveNotesToTrash();
     }
 
     // TC01-2
@@ -56,14 +51,17 @@ public class CreateTextNoteTest extends AbstractTest {
         MobileElement editDetailContent = driver.findElementById(EDIT_DETAIL_CONTENT_ID);
         mobileElementSendKeys(editDetailContent, NOTE_CONTENT);
         assertEquals(NOTE_CONTENT, editDetailContent.getText());
-        textNotes.add(new Note("", NOTE_CONTENT));
 
         MobileElement buttonDrawerOpen = driver.findElementByAccessibilityId(BUTTON_DRAWER_OPEN_ID);
         mobileElementClick(buttonDrawerOpen);
 
-        assertEquals(NOTE_CONTENT, textNotes.get(1).getContent());
+        MobileElement textViewNoteTitle = driver.findElementById(TEXT_VIEW_NOTE_TITLE_ID);
+        assertEquals("", textViewNoteTitle.getText());
 
-        delay(1000);
+        MobileElement textViewNoteContent = driver.findElementById(TEXT_VIEW_NOTE_CONTENT_ID);
+        assertEquals(NOTE_CONTENT, textViewNoteContent.getText());
+
+        moveNotesToTrash();
     }
 
     // TC01-3
@@ -79,14 +77,14 @@ public class CreateTextNoteTest extends AbstractTest {
         MobileElement editDetailTitle = driver.findElementById(EDIT_DETAIL_TITLE_ID);
         mobileElementSendKeys(editDetailTitle, NOTE_TITLE);
         assertEquals(NOTE_TITLE, editDetailTitle.getText());
-        textNotes.add(new Note(NOTE_TITLE, ""));
 
         MobileElement buttonDrawerOpen = driver.findElementByAccessibilityId(BUTTON_DRAWER_OPEN_ID);
         mobileElementClick(buttonDrawerOpen);
 
-        assertEquals(NOTE_TITLE, textNotes.get(2).getTitle());
+        MobileElement textViewNoteTitle = driver.findElementById(TEXT_VIEW_NOTE_TITLE_ID);
+        assertEquals(NOTE_TITLE, textViewNoteTitle.getText());
 
-        delay(1000);
+        moveNotesToTrash();
     }
 
     // TC01-4
@@ -101,9 +99,10 @@ public class CreateTextNoteTest extends AbstractTest {
         MobileElement buttonDrawerOpen = driver.findElementByAccessibilityId(BUTTON_DRAWER_OPEN_ID);
         mobileElementClick(buttonDrawerOpen);
 
-        List<AndroidElement> notes = driver.findElementsById("it.feio.android.omninotes:id/root");
-        assertEquals(textNotes.size(), notes.size());
+        MobileElement textView = driver.findElementById("it.feio.android.omninotes:id/empty_list");
+        assertEquals("這裡甚麼都沒有！", textView.getText());
 
-        delay(1000);
+        clearTrash();
+        gotoHomePage();
     }
 }

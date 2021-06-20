@@ -18,6 +18,7 @@ import java.net.URL;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.openqa.selenium.support.ui.ExpectedConditions.elementToBeClickable;
 
@@ -48,6 +49,7 @@ public abstract class AbstractTest {
     public final static String EMPTY_STRING = "";
     public final static String BUTTON_DRAWER_OPEN_ID = "開啟側邊欄";
     public final static String BUTTON_NEW_TAG_ID = "新增標籤";
+    public final static String STATUS_BAR_XPATH = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.support.v4.widget.DrawerLayout/android.widget.RelativeLayout/android.widget.FrameLayout[1]/android.widget.FrameLayout/android.widget.RelativeLayout";
     public final static String BUTTON_OPTIONS_ID = "更多選項";
 
     private final static String CURRENT_PATH = System.getProperty("user.dir");
@@ -67,7 +69,7 @@ public abstract class AbstractTest {
         desiredCapabilities.setCapability(MobileCapabilityType.DEVICE_NAME, DEVICE_NAME);
         desiredCapabilities.setCapability(MobileCapabilityType.AUTOMATION_NAME, AutomationName.ANDROID_UIAUTOMATOR2);
         desiredCapabilities.setCapability(MobileCapabilityType.APP, String.format("%s\\%s", CURRENT_PATH, APP_NAME));
-//        desiredCapabilities.setCapability(MobileCapabilityType.NO_RESET, true);
+        desiredCapabilities.setCapability(MobileCapabilityType.NO_RESET, true);
         desiredCapabilities.setCapability(AndroidMobileCapabilityType.AUTO_GRANT_PERMISSIONS, true);
         desiredCapabilities.setCapability(AndroidMobileCapabilityType.APP_WAIT_ACTIVITY, "*");
         desiredCapabilities.setCapability(AndroidMobileCapabilityType.ENSURE_WEBVIEWS_HAVE_PAGES, true);
@@ -88,12 +90,12 @@ public abstract class AbstractTest {
 
     public static void mobileElementClick(MobileElement mobileElement) throws InterruptedException {
         mobileElement.click();
-        delay(1000);
+        delay(100);
     }
 
     public static void mobileElementSendKeys(MobileElement mobileElement, String input) throws InterruptedException {
         mobileElement.sendKeys(input);
-        delay(1000);
+        delay(100);
     }
 
     public static void mobileElementClear(MobileElement mobileElement) throws InterruptedException {
@@ -126,8 +128,6 @@ public abstract class AbstractTest {
 
         MobileElement buttonDrawerOpen = driver.findElementByAccessibilityId(BUTTON_DRAWER_OPEN_ID);
         mobileElementClick(buttonDrawerOpen);
-
-        delay(2000);
     }
 
     public static void createChecklistNote() throws InterruptedException {
@@ -147,8 +147,6 @@ public abstract class AbstractTest {
 
         MobileElement buttonDrawerOpen = driver.findElementByAccessibilityId(BUTTON_DRAWER_OPEN_ID);
         mobileElementClick(buttonDrawerOpen);
-
-        delay(2000);
     }
 
     public static void createCategory() throws InterruptedException {
@@ -168,8 +166,6 @@ public abstract class AbstractTest {
 
         MobileElement save = driver.findElementById("it.feio.android.omninotes:id/save");
         mobileElementClick(save);
-
-        delay(2000);
     }
 
     public static void archiveNote() throws InterruptedException {
@@ -187,8 +183,6 @@ public abstract class AbstractTest {
 
         MobileElement archiveNote = driver.findElementByXPath("//*[@resource-id='it.feio.android.omninotes:id/drawer_nav_list']//android.widget.LinearLayout[2]");
         mobileElementClick(archiveNote);
-
-        delay(2000);
     }
 
     public static void moveNotesToTrash() throws InterruptedException {
@@ -200,17 +194,23 @@ public abstract class AbstractTest {
 
         List<AndroidElement> editTextList = driver.findElementsByClassName("android.widget.TextView");
         mobileElementClick(editTextList.get(3));
+    }
 
-        MobileElement alertMessage = driver.findElementById("it.feio.android.omninotes:id/crouton_handle");
-        assertNotNull(alertMessage);
-
+    public static void clearTrash() throws InterruptedException {
         MobileElement buttonDrawerOpen = driver.findElementByAccessibilityId(BUTTON_DRAWER_OPEN_ID);
         mobileElementClick(buttonDrawerOpen);
 
         MobileElement moveNotesToTrash = driver.findElementByXPath("//*[@resource-id='it.feio.android.omninotes:id/drawer_nav_list']//android.widget.LinearLayout[2]");
         mobileElementClick(moveNotesToTrash);
 
-        delay(2000);
+        MobileElement moreOptions = driver.findElementByAccessibilityId("更多選項");
+        mobileElementClick(moreOptions);
+
+        List<AndroidElement> editTextList = driver.findElementsByClassName("android.widget.TextView");
+        mobileElementClick(editTextList.get(1));
+
+        MobileElement enterButton = driver.findElementById("it.feio.android.omninotes:id/buttonDefaultPositive");
+        mobileElementClick(enterButton);
     }
 
     public static void createTag() throws InterruptedException {
@@ -223,8 +223,14 @@ public abstract class AbstractTest {
 
         MobileElement buttonDrawerOpen = driver.findElementByAccessibilityId(BUTTON_DRAWER_OPEN_ID);
         mobileElementClick(buttonDrawerOpen);
+    }
 
-        delay(2000);
+    public static void gotoHomePage() throws InterruptedException {
+        MobileElement buttonDrawerOpen = driver.findElementByAccessibilityId(BUTTON_DRAWER_OPEN_ID);
+        mobileElementClick(buttonDrawerOpen);
+
+        MobileElement moveNotesToTrash = driver.findElementByXPath("//*[@resource-id='it.feio.android.omninotes:id/drawer_nav_list']//android.widget.LinearLayout[1]");
+        mobileElementClick(moveNotesToTrash);
     }
 
     public static void delay(int ms) throws InterruptedException {

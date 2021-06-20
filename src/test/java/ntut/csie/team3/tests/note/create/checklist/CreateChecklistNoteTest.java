@@ -36,7 +36,7 @@ public class CreateChecklistNoteTest extends AbstractTest {
         MobileElement buttonDrawerOpen = driver.findElementByAccessibilityId(BUTTON_DRAWER_OPEN_ID);
         mobileElementClick(buttonDrawerOpen);
 
-        delay(2000);
+        moveNotesToTrash();
     }
 
     // TC02-2
@@ -60,7 +60,7 @@ public class CreateChecklistNoteTest extends AbstractTest {
         MobileElement buttonDrawerOpen = driver.findElementByAccessibilityId(BUTTON_DRAWER_OPEN_ID);
         mobileElementClick(buttonDrawerOpen);
 
-        delay(2000);
+        moveNotesToTrash();
     }
 
     // TC02-3
@@ -82,7 +82,7 @@ public class CreateChecklistNoteTest extends AbstractTest {
         MobileElement buttonDrawerOpen = driver.findElementByAccessibilityId(BUTTON_DRAWER_OPEN_ID);
         mobileElementClick(buttonDrawerOpen);
 
-        delay(2000);
+        moveNotesToTrash();
     }
 
     // TC02-4
@@ -117,7 +117,7 @@ public class CreateChecklistNoteTest extends AbstractTest {
         MobileElement buttonDrawerOpen = driver.findElementByAccessibilityId(BUTTON_DRAWER_OPEN_ID);
         mobileElementClick(buttonDrawerOpen);
 
-        delay(2000);
+        moveNotesToTrash();
     }
 
     // TC-02-5
@@ -148,7 +148,7 @@ public class CreateChecklistNoteTest extends AbstractTest {
         MobileElement buttonDrawerOpen = driver.findElementByAccessibilityId(BUTTON_DRAWER_OPEN_ID);
         mobileElementClick(buttonDrawerOpen);
 
-        delay(2000);
+        moveNotesToTrash();
     }
 
     // TC-02-6
@@ -176,6 +176,8 @@ public class CreateChecklistNoteTest extends AbstractTest {
         MobileElement buttonDrawerOpen = driver.findElementByAccessibilityId(BUTTON_DRAWER_OPEN_ID);
         mobileElementClick(buttonDrawerOpen);
 
-        delay(2000);
+        moveNotesToTrash();
+        clearTrash();
+        gotoHomePage();
     }
 }

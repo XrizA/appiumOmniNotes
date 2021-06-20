@@ -23,7 +23,7 @@ public class ClearTrashTest extends AbstractTest {
     // TC08-1
     @Test
     @Order(1)
-    public void clearTrash() throws InterruptedException {
+    public void clearTrashTest() throws InterruptedException {
         MobileElement moreOptions = driver.findElementByAccessibilityId("更多選項");
         mobileElementClick(moreOptions);
 
