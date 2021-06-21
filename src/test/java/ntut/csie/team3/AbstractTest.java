@@ -1,13 +1,17 @@
 package ntut.csie.team3;
 
 import io.appium.java_client.MobileElement;
+import io.appium.java_client.TouchAction;
 import io.appium.java_client.android.Activity;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
+import io.appium.java_client.android.nativekey.AndroidKey;
+import io.appium.java_client.android.nativekey.KeyEvent;
 import io.appium.java_client.remote.AndroidMobileCapabilityType;
 import io.appium.java_client.remote.AutomationName;
 import io.appium.java_client.remote.MobileCapabilityType;
 import io.appium.java_client.remote.MobilePlatform;
+import io.appium.java_client.touch.offset.PointOption;
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.remote.DesiredCapabilities;
@@ -18,8 +22,6 @@ import java.net.URL;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.openqa.selenium.support.ui.ExpectedConditions.elementToBeClickable;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
@@ -90,7 +92,7 @@ public abstract class AbstractTest {
 
     public static void mobileElementClick(MobileElement mobileElement) throws InterruptedException {
         mobileElement.click();
-        delay(100);
+        delay(800);
     }
 
     public static void mobileElementSendKeys(MobileElement mobileElement, String input) throws InterruptedException {
@@ -126,8 +128,7 @@ public abstract class AbstractTest {
         MobileElement editDetailContent = driver.findElementById(EDIT_DETAIL_CONTENT_ID);
         mobileElementSendKeys(editDetailContent, noteContent);
 
-        MobileElement buttonDrawerOpen = driver.findElementByAccessibilityId(BUTTON_DRAWER_OPEN_ID);
-        mobileElementClick(buttonDrawerOpen);
+        goBack();
     }
 
     public static void createChecklistNote() throws InterruptedException {
@@ -189,6 +190,10 @@ public abstract class AbstractTest {
         MobileElement note = driver.findElementById("it.feio.android.omninotes:id/root");
         mobileElementClick(note);
 
+        clickMoveNotesToTrash();
+    }
+
+    public static void clickMoveNotesToTrash() throws InterruptedException {
         MobileElement moreOptions = driver.findElementByAccessibilityId("更多選項");
         mobileElementClick(moreOptions);
 
@@ -197,12 +202,18 @@ public abstract class AbstractTest {
     }
 
     public static void clearTrash() throws InterruptedException {
-        MobileElement buttonDrawerOpen = driver.findElementByAccessibilityId(BUTTON_DRAWER_OPEN_ID);
-        mobileElementClick(buttonDrawerOpen);
-
         MobileElement moveNotesToTrash = driver.findElementByXPath("//*[@resource-id='it.feio.android.omninotes:id/drawer_nav_list']//android.widget.LinearLayout[2]");
         mobileElementClick(moveNotesToTrash);
 
+        clickClearTrash();
+    }
+
+    public static void clickXY(int x, int y) {
+        TouchAction touchAction = new TouchAction(driver);
+        touchAction.press(new PointOption().withCoordinates(x, y)).perform();
+    }
+
+    public static void clickClearTrash() throws InterruptedException {
         MobileElement moreOptions = driver.findElementByAccessibilityId("更多選項");
         mobileElementClick(moreOptions);
 
@@ -211,6 +222,24 @@ public abstract class AbstractTest {
 
         MobileElement enterButton = driver.findElementById("it.feio.android.omninotes:id/buttonDefaultPositive");
         mobileElementClick(enterButton);
+    }
+
+    public static void removeCategory() throws InterruptedException {
+        MobileElement ButtonDrawerOpenId = driver.findElementByAccessibilityId(BUTTON_DRAWER_OPEN_ID);
+        mobileElementClick(ButtonDrawerOpenId);
+
+        MobileElement drawerCategory = driver.findElementByXPath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.support.v4.widget.DrawerLayout/android.widget.ScrollView/android.widget.LinearLayout/android.widget.ListView[2]/android.widget.LinearLayout[1]/android.widget.LinearLayout/android.widget.TextView[1]");
+        longPress(drawerCategory);
+
+        clickDeleteCategoryButton();
+    }
+
+    public static void clickDeleteCategoryButton() throws InterruptedException {
+        MobileElement delete = driver.findElementById("it.feio.android.omninotes:id/delete");
+        mobileElementClick(delete);
+
+        MobileElement defaultPositive = driver.findElementById("it.feio.android.omninotes:id/buttonDefaultPositive");
+        mobileElementClick(defaultPositive);
     }
 
     public static void createTag() throws InterruptedException {
@@ -225,12 +254,28 @@ public abstract class AbstractTest {
         mobileElementClick(buttonDrawerOpen);
     }
 
+    public static void gotoTrashPage() throws InterruptedException {
+        MobileElement buttonDrawerOpen = driver.findElementByAccessibilityId(BUTTON_DRAWER_OPEN_ID);
+        mobileElementClick(buttonDrawerOpen);
+
+        clickGotoTrashPage();
+    }
+
+    public static void clickGotoTrashPage() throws InterruptedException {
+        MobileElement moveNotesToTrash = driver.findElementByXPath("//*[@resource-id='it.feio.android.omninotes:id/drawer_nav_list']//android.widget.LinearLayout[2]");
+        mobileElementClick(moveNotesToTrash);
+    }
+
     public static void gotoHomePage() throws InterruptedException {
         MobileElement buttonDrawerOpen = driver.findElementByAccessibilityId(BUTTON_DRAWER_OPEN_ID);
         mobileElementClick(buttonDrawerOpen);
 
         MobileElement moveNotesToTrash = driver.findElementByXPath("//*[@resource-id='it.feio.android.omninotes:id/drawer_nav_list']//android.widget.LinearLayout[1]");
         mobileElementClick(moveNotesToTrash);
+    }
+
+    public static void goBack() {
+        driver.pressKey(new KeyEvent(AndroidKey.BACK));
     }
 
     public static void delay(int ms) throws InterruptedException {

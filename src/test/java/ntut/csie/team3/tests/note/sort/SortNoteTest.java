@@ -13,24 +13,18 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class SortNoteTest extends AbstractTest {
 
-    private static boolean firstTime = true;
-
     @BeforeEach
     public void init() throws InterruptedException {
         super.init();
-        if(firstTime){
-            firstTime = false;
-            createTextNote("數學課", "考試");
-            createTextNote("歷史課", "課程");
-            createTextNote("榜單", "查詢");
-        }
+        createTextNote("數學課", "考試");
+        createTextNote("歷史課", "課程");
+        createTextNote("榜單", "查詢");
     }
 
     // TC28-1
     @Test
     @Order(1)
     public void sortTextNoteWithTitle() throws InterruptedException {
-
 
         MobileElement sort = driver.findElementByAccessibilityId("排序");
         mobileElementClick(sort);
@@ -43,7 +37,9 @@ public class SortNoteTest extends AbstractTest {
         assertEquals("榜單", textViewList.get(6).getText());
         assertEquals("歷史課", textViewList.get(9).getText());
 
-        delay(2000);
+        moveNotesToTrash();
+        moveNotesToTrash();
+        moveNotesToTrash();
     }
 
     // TC28-2
@@ -63,24 +59,15 @@ public class SortNoteTest extends AbstractTest {
         assertEquals("歷史課", textViewList.get(6).getText());
         assertEquals("數學課", textViewList.get(9).getText());
 
-        delay(2000);
+        moveNotesToTrash();
+        moveNotesToTrash();
+        moveNotesToTrash();
     }
 
     // TC28-3
     @Test
     @Order(3)
     public void sortTextNoteWithLastEditTime() throws InterruptedException {
-
-        List<AndroidElement> noteList = driver.findElementsByClassName("android.widget.LinearLayout");
-        mobileElementClick(noteList.get(5));
-
-        MobileElement editDetailContent = driver.findElementById(EDIT_DETAIL_CONTENT_ID);
-        String editDetailContentText = editDetailContent.getText();
-        mobileElementSendKeys(editDetailContent, editDetailContentText + "進度");
-
-        MobileElement buttonDrawerOpen = driver.findElementByAccessibilityId(BUTTON_DRAWER_OPEN_ID);
-        mobileElementClick(buttonDrawerOpen);
-
         MobileElement sort = driver.findElementByAccessibilityId("排序");
         mobileElementClick(sort);
 
@@ -88,11 +75,16 @@ public class SortNoteTest extends AbstractTest {
         mobileElementClick(sortList.get(4));
 
         List<AndroidElement> textViewList = driver.findElementsByClassName("android.widget.TextView");
-        assertEquals("歷史課", textViewList.get(3).getText());
-        assertEquals("榜單", textViewList.get(6).getText());
+        assertEquals("榜單", textViewList.get(3).getText());
+        assertEquals("歷史課", textViewList.get(6).getText());
         assertEquals("數學課", textViewList.get(9).getText());
 
-        delay(2000);
+        moveNotesToTrash();
+        moveNotesToTrash();
+        moveNotesToTrash();
+        gotoTrashPage();
+        clickClearTrash();
+        gotoHomePage();
     }
 
 

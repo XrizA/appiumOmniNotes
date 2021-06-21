@@ -41,6 +41,9 @@ public class UnableChecklistTest extends AbstractTest {
             assertEquals("https://www.seleniumhq.org/exceptions/no_such_element.html", e.getSupportUrl());
         }
 
-        delay(2000);
+        clickMoveNotesToTrash();
+        gotoTrashPage();
+        clickClearTrash();
+        gotoHomePage();
     }
 }

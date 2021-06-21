@@ -42,6 +42,9 @@ public class DeleteTagTest extends AbstractTest {
         MobileElement croutonHandle = driver.findElementById("it.feio.android.omninotes:id/crouton_handle");
         assertNotNull(croutonHandle);
 
-        delay(2000);
+        clickMoveNotesToTrash();
+        gotoTrashPage();
+        clickClearTrash();
+        gotoHomePage();
     }
 }

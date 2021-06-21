@@ -47,7 +47,7 @@ public class CreateTagTest extends AbstractTest {
         buttonDrawerOpen = driver.findElementByAccessibilityId(BUTTON_DRAWER_OPEN_ID);
         mobileElementClick(buttonDrawerOpen);
 
-        delay(2000);
+        moveNotesToTrash();
     }
 
 
@@ -80,6 +80,9 @@ public class CreateTagTest extends AbstractTest {
         buttonDrawerOpen = driver.findElementByAccessibilityId(BUTTON_DRAWER_OPEN_ID);
         mobileElementClick(buttonDrawerOpen);
 
-        delay(2000);
+        moveNotesToTrash();
+        gotoTrashPage();
+        clickClearTrash();
+        gotoHomePage();
     }
 }

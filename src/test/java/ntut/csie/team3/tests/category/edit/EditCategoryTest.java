@@ -10,15 +10,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class EditCategoryTest extends AbstractTest {
 
-    private static boolean firstTime = true;
-
     @BeforeEach
     public void init() throws InterruptedException {
         super.init();
-        if(firstTime) {
-            firstTime = false;
-            createCategory();
-        }
+        createCategory();
     }
 
     // TC17-1
@@ -40,7 +35,9 @@ public class EditCategoryTest extends AbstractTest {
         categoryTitle = driver.findElementById("it.feio.android.omninotes:id/category_title");
         assertEquals("標題", categoryTitle.getText());
 
-        delay(2000);
+        clickDeleteCategoryButton();
+        goBack();
+        moveNotesToTrash();
     }
 
 
@@ -72,7 +69,9 @@ public class EditCategoryTest extends AbstractTest {
         categoryTitle = driver.findElementById("it.feio.android.omninotes:id/category_title");
         assertEquals("標題", categoryTitle.getText());
 
-        delay(2000);
+        clickDeleteCategoryButton();
+        goBack();
+        moveNotesToTrash();
     }
 
     // TC17-3
@@ -94,7 +93,10 @@ public class EditCategoryTest extends AbstractTest {
         drawerCategory = driver.findElementByXPath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.support.v4.widget.DrawerLayout/android.widget.ScrollView/android.widget.LinearLayout/android.widget.ListView[2]/android.widget.LinearLayout[1]/android.widget.LinearLayout/android.widget.TextView[1]");
         assertEquals(CATEGORY_TITLE, drawerCategory.getText());
 
-        delay(2000);
+        goBack();
+        moveNotesToTrash();
+        removeCategory();
+        goBack();
     }
 
 
@@ -102,8 +104,8 @@ public class EditCategoryTest extends AbstractTest {
     @Test
     @Order(4)
     public void editCategoryWithCustomColor() throws InterruptedException {
-//        MobileElement ButtonDrawerOpenId = driver.findElementByAccessibilityId(BUTTON_DRAWER_OPEN_ID);
-//        mobileElementClick(ButtonDrawerOpenId);
+        MobileElement ButtonDrawerOpenId = driver.findElementByAccessibilityId(BUTTON_DRAWER_OPEN_ID);
+        mobileElementClick(ButtonDrawerOpenId);
 
         MobileElement drawerCategory = driver.findElementByXPath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.support.v4.widget.DrawerLayout/android.widget.ScrollView/android.widget.LinearLayout/android.widget.ListView[2]/android.widget.LinearLayout[1]/android.widget.LinearLayout/android.widget.TextView[1]");
         longPress(drawerCategory);
@@ -126,6 +128,11 @@ public class EditCategoryTest extends AbstractTest {
         drawerCategory = driver.findElementByXPath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.support.v4.widget.DrawerLayout/android.widget.ScrollView/android.widget.LinearLayout/android.widget.ListView[2]/android.widget.LinearLayout[1]/android.widget.LinearLayout/android.widget.TextView[1]");
         assertEquals(CATEGORY_TITLE, drawerCategory.getText());
 
-        delay(2000);
+        goBack();
+        moveNotesToTrash();
+        removeCategory();
+        clickGotoTrashPage();
+        clickClearTrash();
+        gotoHomePage();
     }
 }

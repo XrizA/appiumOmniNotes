@@ -49,7 +49,7 @@ public class EditTagTest extends AbstractTest {
         buttonDrawerOpen = driver.findElementByAccessibilityId(BUTTON_DRAWER_OPEN_ID);
         mobileElementClick(buttonDrawerOpen);
 
-        delay(2000);
+        moveNotesToTrash();
     }
 
     // TC24-2
@@ -77,7 +77,11 @@ public class EditTagTest extends AbstractTest {
         List<AndroidElement> tagList = driver.findElementsByClassName("android.widget.TextView");
         assertEquals("未完成 (1)", tagList.get(1).getText());
 
-        delay(2000);
+        goBack();
+        clickMoveNotesToTrash();
+        gotoTrashPage();
+        clickClearTrash();
+        gotoHomePage();
     }
 
 

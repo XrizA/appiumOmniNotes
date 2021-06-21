@@ -25,6 +25,12 @@ public class DeleteTextNoteTest extends AbstractTest {
     @Test
     @Order(1)
     public void deleteTextNote() throws InterruptedException {
+        MobileElement buttonDrawerOpen = driver.findElementByAccessibilityId(BUTTON_DRAWER_OPEN_ID);
+        mobileElementClick(buttonDrawerOpen);
+
+        MobileElement moveNotesToTrash = driver.findElementByXPath("//*[@resource-id='it.feio.android.omninotes:id/drawer_nav_list']//android.widget.LinearLayout[2]");
+        mobileElementClick(moveNotesToTrash);
+
         MobileElement note = driver.findElementById("it.feio.android.omninotes:id/root");
         mobileElementClick(note);
 
@@ -43,6 +49,6 @@ public class DeleteTextNoteTest extends AbstractTest {
         MobileElement textView = driver.findElementById("it.feio.android.omninotes:id/empty_list");
         assertEquals("這裡甚麼都沒有！", textView.getText());
 
-        delay(2000);
+        gotoHomePage();
     }
 }

@@ -24,6 +24,12 @@ public class RestoreTextNoteTest extends AbstractTest {
     @Test
     @Order(1)
     public void restoreTextNote() throws InterruptedException {
+        MobileElement buttonDrawerOpen = driver.findElementByAccessibilityId(BUTTON_DRAWER_OPEN_ID);
+        mobileElementClick(buttonDrawerOpen);
+
+        MobileElement moveNotesToTrash = driver.findElementByXPath("//*[@resource-id='it.feio.android.omninotes:id/drawer_nav_list']//android.widget.LinearLayout[2]");
+        mobileElementClick(moveNotesToTrash);
+
         MobileElement note = driver.findElementById("it.feio.android.omninotes:id/root");
         mobileElementClick(note);
 
@@ -36,7 +42,7 @@ public class RestoreTextNoteTest extends AbstractTest {
         MobileElement alertMessage = driver.findElementById("it.feio.android.omninotes:id/crouton_handle");
         assertNotNull(alertMessage);
 
-        MobileElement buttonDrawerOpen = driver.findElementByAccessibilityId(BUTTON_DRAWER_OPEN_ID);
+        buttonDrawerOpen = driver.findElementByAccessibilityId(BUTTON_DRAWER_OPEN_ID);
         mobileElementClick(buttonDrawerOpen);
 
         MobileElement goToNotePage = driver.findElementByXPath("//*[@resource-id='it.feio.android.omninotes:id/drawer_nav_list']//android.widget.LinearLayout[1]");
@@ -48,6 +54,9 @@ public class RestoreTextNoteTest extends AbstractTest {
         MobileElement noteContent = driver.findElementById("it.feio.android.omninotes:id/note_content");
         assertEquals(NOTE_CONTENT, noteContent.getText());
 
-        delay(2000);
+        moveNotesToTrash();
+        gotoTrashPage();
+        clickClearTrash();
+        gotoHomePage();
     }
 }

@@ -177,7 +177,8 @@ public class CreateChecklistNoteTest extends AbstractTest {
         mobileElementClick(buttonDrawerOpen);
 
         moveNotesToTrash();
-        clearTrash();
+        gotoTrashPage();
+        clickClearTrash();
         gotoHomePage();
     }
 }

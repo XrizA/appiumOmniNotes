@@ -57,7 +57,11 @@ public class RemoveTagTest extends AbstractTest {
         MobileElement editDetailContent = driver.findElementById(EDIT_DETAIL_CONTENT_ID);
         assertEquals("123456789 ", editDetailContent.getText());
 
-        delay(2000);
+        clickMoveNotesToTrash();
+        moveNotesToTrash();
+        gotoTrashPage();
+        clickClearTrash();
+        gotoHomePage();
     }
 
 }

@@ -47,6 +47,7 @@ public class MoveNotesToTrashTest extends AbstractTest {
         MobileElement noteContent = driver.findElementById("it.feio.android.omninotes:id/note_content");
         assertEquals(NOTE_CONTENT, noteContent.getText());
 
-        delay(2000);
+        clickClearTrash();
+        gotoHomePage();
     }
 }

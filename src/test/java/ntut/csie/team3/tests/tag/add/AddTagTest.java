@@ -1,10 +1,13 @@
 package ntut.csie.team3.tests.tag.add;
 
 import io.appium.java_client.MobileElement;
+import io.appium.java_client.android.AndroidElement;
 import ntut.csie.team3.AbstractTest;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
+
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -42,8 +45,10 @@ public class AddTagTest extends AbstractTest {
                 "\n" +
                 "#已完成", editDetailContent.getText());
 
-        delay(2000);
+        clickMoveNotesToTrash();
+        moveNotesToTrash();
+        gotoTrashPage();
+        clickClearTrash();
+        gotoHomePage();
     }
-
-
 }

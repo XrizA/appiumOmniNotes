@@ -35,6 +35,10 @@ public class CreateTimestampsTest extends AbstractTest {
 
         assertNotNull(editDetailContent.getText());
 
-        delay(2000);
+        goBack();
+        moveNotesToTrash();
+        gotoTrashPage();
+        clickClearTrash();
+        gotoHomePage();
     }
 }

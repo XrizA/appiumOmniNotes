@@ -10,17 +10,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class SearchNoteTest extends AbstractTest {
 
-    private static boolean firstTime = true;
-
     @BeforeEach
     public void init() throws InterruptedException {
         super.init();
-        if(firstTime){
-            firstTime = false;
-            createTextNote("歷史課", "課程");
-            createTextNote("數學課", "考試");
-            createTextNote("榜單", "查詢");
-        }
+        createTextNote("歷史課", "課程");
+        createTextNote("數學課", "考試");
+        createTextNote("榜單", "查詢");
     }
 
     // TC27-1
@@ -39,6 +34,10 @@ public class SearchNoteTest extends AbstractTest {
         mobileElementClick(close);
 
         delay(2000);
+
+        moveNotesToTrash();
+        moveNotesToTrash();
+        moveNotesToTrash();
     }
 
     // TC27-2 ???
@@ -56,7 +55,12 @@ public class SearchNoteTest extends AbstractTest {
         MobileElement close = (MobileElement) driver.findElementByAccessibilityId("收合");
         mobileElementClick(close);
 
-        delay(2000);
+        moveNotesToTrash();
+        moveNotesToTrash();
+        moveNotesToTrash();
+        gotoTrashPage();
+        clickClearTrash();
+        gotoHomePage();
     }
 
 }

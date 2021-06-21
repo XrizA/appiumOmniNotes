@@ -1,11 +1,13 @@
 package ntut.csie.team3.runner;
 
 import ntut.csie.team3.tests.category.create.CreateCategoryTest;
+import ntut.csie.team3.tests.category.delete.DeleteCategoryTest;
 import ntut.csie.team3.tests.category.edit.EditCategoryTest;
 import ntut.csie.team3.tests.note.archive.ArchiveNoteTest;
 import ntut.csie.team3.tests.note.create.CreateTimestampsTest;
 import ntut.csie.team3.tests.note.create.checklist.CreateChecklistNoteTest;
 import ntut.csie.team3.tests.note.create.textnote.CreateTextNoteTest;
+import ntut.csie.team3.tests.note.delete.textnote.DeleteNoteCategoryTest;
 import ntut.csie.team3.tests.note.edit.checklist.EditChecklistNoteContentTest;
 import ntut.csie.team3.tests.note.edit.checklist.UnableChecklistTest;
 import ntut.csie.team3.tests.note.edit.textnote.EditNoteCategoryTest;
@@ -45,9 +47,9 @@ import org.junit.runner.RunWith;
         UnableChecklistTest.class,
         CreateCategoryTest.class,
         EditCategoryTest.class,
-        DeleteTextNoteTest.class,
+        DeleteCategoryTest.class,
         EditNoteCategoryTest.class,
-        DeleteTextNoteTest.class,
+        DeleteNoteCategoryTest.class,
         CreateTagTest.class,
         AddTagTest.class,
         RemoveTagTest.class,

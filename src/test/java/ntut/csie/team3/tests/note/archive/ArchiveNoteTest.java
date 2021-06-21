@@ -48,6 +48,9 @@ public class ArchiveNoteTest extends AbstractTest {
         MobileElement noteContent = driver.findElementById("it.feio.android.omninotes:id/note_content");
         assertEquals(NOTE_CONTENT, noteContent.getText());
 
-        Thread.sleep(2000);
+        moveNotesToTrash();
+        gotoTrashPage();
+        clickClearTrash();
+        gotoHomePage();
     }
 }

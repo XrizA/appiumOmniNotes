@@ -33,7 +33,7 @@ public class EditTextNoteContentTest extends AbstractTest {
         MobileElement textViewNoteTitle = driver.findElementById(TEXT_VIEW_NOTE_TITLE_ID);
         assertEquals(NOTE_TITLE, textViewNoteTitle.getText());
 
-        delay(2000);
+        moveNotesToTrash();
     }
 
     // TC10-2
@@ -56,6 +56,9 @@ public class EditTextNoteContentTest extends AbstractTest {
         MobileElement textViewNoteContent = driver.findElementById(TEXT_VIEW_NOTE_CONTENT_ID);
         assertEquals(NOTE_CONTENT, textViewNoteContent.getText());
 
-        delay(2000);
+        moveNotesToTrash();
+        gotoTrashPage();
+        clickClearTrash();
+        gotoHomePage();
     }
 }

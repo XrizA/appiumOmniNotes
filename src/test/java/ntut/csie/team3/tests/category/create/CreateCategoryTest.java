@@ -1,6 +1,8 @@
 package ntut.csie.team3.tests.category.create;
 
 import io.appium.java_client.MobileElement;
+import io.appium.java_client.TouchAction;
+import io.appium.java_client.touch.offset.PointOption;
 import ntut.csie.team3.AbstractTest;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Order;
@@ -35,7 +37,9 @@ public class CreateCategoryTest extends AbstractTest {
         MobileElement categoryTitle = driver.findElementById("it.feio.android.omninotes:id/category_title");
         assertEquals("標題", categoryTitle.getText());
 
-        delay(2000);
+        goBack();
+        clickMoveNotesToTrash();
+        clickXY(200, 200);
     }
 
     // TC16-2
@@ -66,7 +70,9 @@ public class CreateCategoryTest extends AbstractTest {
         MobileElement categoryTitle = driver.findElementById("it.feio.android.omninotes:id/category_title");
         assertEquals("標題", categoryTitle.getText());
 
-        delay(2000);
+        goBack();
+        clickMoveNotesToTrash();
+        clickXY(200, 200);
     }
 
     // TC16-3
@@ -88,14 +94,18 @@ public class CreateCategoryTest extends AbstractTest {
         MobileElement save = driver.findElementById("it.feio.android.omninotes:id/save");
         mobileElementClick(save);
 
+        cardLayout = driver.findElementById(CARD_LAYOUT_ID);
         longPress(cardLayout);
 
         menuCategory = driver.findElementById(MENU_CATEGORY_ID);
         mobileElementClick(menuCategory);
-        MobileElement categoryName = driver.findElementByXPath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.LinearLayout[2]/android.widget.FrameLayout/android.widget.ListView/android.widget.LinearLayout/android.widget.LinearLayout/android.widget.TextView[1]");
+        MobileElement categoryName = driver.findElementByXPath("//*[@resource-id='it.feio.android.omninotes:id/contentListView']//*//*[@resource-id='it.feio.android.omninotes:id/title']");
         assertEquals(CATEGORY_TITLE, categoryName.getText());
 
-        delay(2000);
+        goBack();
+        clickMoveNotesToTrash();
+        removeCategory();
+        goBack();
     }
 
     // TC16-4
@@ -126,13 +136,19 @@ public class CreateCategoryTest extends AbstractTest {
         MobileElement save = driver.findElementById("it.feio.android.omninotes:id/save");
         mobileElementClick(save);
 
+        cardLayout = driver.findElementById(CARD_LAYOUT_ID);
         longPress(cardLayout);
 
         menuCategory = driver.findElementById(MENU_CATEGORY_ID);
         mobileElementClick(menuCategory);
-        MobileElement categoryName = driver.findElementByXPath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.LinearLayout[2]/android.widget.FrameLayout/android.widget.ListView/android.widget.LinearLayout/android.widget.LinearLayout/android.widget.TextView[1]");
+        MobileElement categoryName = driver.findElementByXPath("//*[@resource-id='it.feio.android.omninotes:id/contentListView']//*//*[@resource-id='it.feio.android.omninotes:id/title']");
         assertEquals(CATEGORY_TITLE, categoryName.getText());
 
-        delay(2000);
+        goBack();
+        clickMoveNotesToTrash();
+        removeCategory();
+        clickGotoTrashPage();
+        clickClearTrash();
+        gotoHomePage();
     }
 }

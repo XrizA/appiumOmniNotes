@@ -102,7 +102,8 @@ public class CreateTextNoteTest extends AbstractTest {
         MobileElement textView = driver.findElementById("it.feio.android.omninotes:id/empty_list");
         assertEquals("這裡甚麼都沒有！", textView.getText());
 
-        clearTrash();
+        gotoTrashPage();
+        clickClearTrash();
         gotoHomePage();
     }
 }

@@ -40,7 +40,7 @@ public class EditChecklistNoteContentTest extends AbstractTest {
         MobileElement buttonDrawerOpen = driver.findElementByAccessibilityId(BUTTON_DRAWER_OPEN_ID);
         mobileElementClick(buttonDrawerOpen);
 
-        delay(2000);
+        moveNotesToTrash();
     }
 
     // TC11-2
@@ -65,7 +65,7 @@ public class EditChecklistNoteContentTest extends AbstractTest {
         MobileElement buttonDrawerOpen = driver.findElementByAccessibilityId(BUTTON_DRAWER_OPEN_ID);
         mobileElementClick(buttonDrawerOpen);
 
-        delay(2000);
+        moveNotesToTrash();
     }
 
     // TC11-3
@@ -90,7 +90,7 @@ public class EditChecklistNoteContentTest extends AbstractTest {
         MobileElement buttonDrawerOpen = driver.findElementByAccessibilityId(BUTTON_DRAWER_OPEN_ID);
         mobileElementClick(buttonDrawerOpen);
 
-        delay(2000);
+        moveNotesToTrash();
     }
 
     // TC11-4
@@ -121,7 +121,7 @@ public class EditChecklistNoteContentTest extends AbstractTest {
         MobileElement buttonDrawerOpen = driver.findElementByAccessibilityId(BUTTON_DRAWER_OPEN_ID);
         mobileElementClick(buttonDrawerOpen);
 
-        delay(2000);
+        moveNotesToTrash();
     }
 
     // TC11-5
@@ -146,7 +146,7 @@ public class EditChecklistNoteContentTest extends AbstractTest {
         MobileElement buttonDrawerOpen = driver.findElementByAccessibilityId(BUTTON_DRAWER_OPEN_ID);
         mobileElementClick(buttonDrawerOpen);
 
-        delay(2000);
+        moveNotesToTrash();
     }
 
     // TC11-6
@@ -165,6 +165,9 @@ public class EditChecklistNoteContentTest extends AbstractTest {
         MobileElement buttonDrawerOpen = driver.findElementByAccessibilityId(BUTTON_DRAWER_OPEN_ID);
         mobileElementClick(buttonDrawerOpen);
 
-        delay(2000);
+        moveNotesToTrash();
+        gotoTrashPage();
+        clickClearTrash();
+        gotoHomePage();
     }
 }

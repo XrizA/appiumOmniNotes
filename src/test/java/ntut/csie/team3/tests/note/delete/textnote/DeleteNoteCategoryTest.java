@@ -38,6 +38,11 @@ public class DeleteNoteCategoryTest extends AbstractTest {
         MobileElement categoryCount = driver.findElementById("it.feio.android.omninotes:id/count");
         assertEquals("0", categoryCount.getText());
 
-        delay(2000);
+        goBack();
+        clickMoveNotesToTrash();
+        removeCategory();
+        clickGotoTrashPage();
+        clickClearTrash();
+        gotoHomePage();
     }
 }
