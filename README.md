@@ -44,6 +44,7 @@ public final static String DEVICE_NAME = "???";
 ...
 ```
 modify "???" to your device name.
+![DeviceName](img/DeviceName.jpg)
 
 ## Run
 ![Execute](img/Execute.jpg)
