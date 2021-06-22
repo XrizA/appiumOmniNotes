@@ -37,7 +37,7 @@ adb shell am start -n it.feio.android.omninotes/.intro.IntroActivity
 ```
 
 ## Pre-preparation
-Open Appium
+Open Appium<br />
 ![Appium](img/Appium.jpg)
 
 Open ntut.csie.team3.AbstractTest.java
